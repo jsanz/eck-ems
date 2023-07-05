@@ -1,0 +1,20 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: quickstart
+  namespace: elastic-system
+spec:
+  version: 8.8.2
+  count: 1
+  elasticsearchRef:
+    name: quickstart
+  config:
+    map.emsUrl: https://34.30.228.101:8080 # Configure this to a domain or IP
+  http:
+    service:
+      spec:
+        type: LoadBalancer # default is ClusterIP
+    tls:
+      selfSignedCertificate:
+        subjectAltNames:
+        - ip: 34.135.181.47 # External IP of the cluster

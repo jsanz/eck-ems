@@ -1,0 +1,16 @@
+apiVersion: maps.k8s.elastic.co/v1alpha1
+kind: ElasticMapsServer
+metadata:
+  name: quickstart
+  namespace: elastic-system
+spec:
+  version: 8.8.1
+  count: 1
+  http:
+    service:
+      spec:
+        type: LoadBalancer # default is ClusterIP
+    tls:
+      selfSignedCertificate:
+        subjectAltNames:
+        - ip: 34.135.181.47 # External IP of the cluster
